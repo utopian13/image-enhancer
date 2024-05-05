@@ -11,8 +11,7 @@
         <link
             rel="icon"
             type="image/x-icon"
-            href="./static/assets/ui/favicon.png" />
-
+            href="{{ url_for('static', filename='assets/ui/favicon.png') }}" />
         <title>AI - Image Enhancer</title>
     </head>
     <body>
@@ -29,7 +28,7 @@
                 <p id="noImageText">No file chosen yet!</p>
             </div>
             <form
-                action="/download"
+                action="{{ url_for('upload') }}"
                 method="post"
                 enctype="multipart/form-data">
                 <input
