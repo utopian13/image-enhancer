@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, send_file, redirect, url_for
+from flask import Flask, render_template, request, redirect, url_for
 from werkzeug.utils import secure_filename
 import firebase_admin
 from firebase_admin import credentials, storage
@@ -9,21 +9,21 @@ load_dotenv()
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
 
-firebase_admin_key = {
+firebase_cred = credentials.Certificate({
     "type": "service_account",
-    "project_id": "your-project-id",
+    "project_id": os.getenv("FIREBASE_ADMIN_PROJECT_ID"),
     "private_key_id": os.getenv("FIREBASE_ADMIN_PRIVATE_KEY_ID"),
-    "private_key": os.getenv("FIREBASE_ADMIN_PRIVATE_KEY").replace("\\n", "\n"),
+    "private_key": os.getenv("FIREBASE_ADMIN_PRIVATE_KEY").replace('\\n', '\n'),
     "client_email": os.getenv("FIREBASE_ADMIN_CLIENT_EMAIL"),
     "client_id": os.getenv("FIREBASE_ADMIN_CLIENT_ID"),
-    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_uri": os.getenv("FIREBASE_ADMIN_AUTH_URI"),
+    "token_uri": os.getenv("FIREBASE_ADMIN_TOKEN_URI"),
     "auth_provider_x509_cert_url": os.getenv("FIREBASE_ADMIN_AUTH_PROVIDER_X509_CERT_URL"),
     "client_x509_cert_url": os.getenv("FIREBASE_ADMIN_CLIENT_X509_CERT_URL")
-}
+})
 
-firebase_cred = credentials.Certificate(firebase_admin_key)
-firebase_admin.initialize_app(firebase_cred)
+firebase_admin.initialize_app(
+    firebase_cred, {'storageBucket': 'practice-e99ea.appspot.com'})
 
 bucket = storage.bucket()
 
