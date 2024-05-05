@@ -1,23 +1,31 @@
-import os
-from flask import Flask, render_template, request, redirect, url_for
+from flask import Flask, render_template, request, send_file, redirect, url_for
 from werkzeug.utils import secure_filename
 import firebase_admin
 from firebase_admin import credentials, storage
 from dotenv import load_dotenv
+import os
 
-# Load environment variables from .env file
 load_dotenv()
 
-# Initialize Flask app
 app = Flask(__name__, template_folder='templates', static_folder='static')
 
-# Configure Firebase using environment variable
-cred = credentials.Certificate(os.getenv("FIREBASE_SDK"))
-firebase_admin.initialize_app(
-    cred, {'storageBucket': 'practice-e99ea.appspot.com'})
-bucket = storage.bucket()
+firebase_admin_key = {
+    "type": "service_account",
+    "project_id": "your-project-id",
+    "private_key_id": os.getenv("FIREBASE_ADMIN_PRIVATE_KEY_ID"),
+    "private_key": os.getenv("FIREBASE_ADMIN_PRIVATE_KEY").replace("\\n", "\n"),
+    "client_email": os.getenv("FIREBASE_ADMIN_CLIENT_EMAIL"),
+    "client_id": os.getenv("FIREBASE_ADMIN_CLIENT_ID"),
+    "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+    "token_uri": "https://oauth2.googleapis.com/token",
+    "auth_provider_x509_cert_url": os.getenv("FIREBASE_ADMIN_AUTH_PROVIDER_X509_CERT_URL"),
+    "client_x509_cert_url": os.getenv("FIREBASE_ADMIN_CLIENT_X509_CERT_URL")
+}
 
-# Define routes
+firebase_cred = credentials.Certificate(firebase_admin_key)
+firebase_admin.initialize_app(firebase_cred)
+
+bucket = storage.bucket()
 
 
 @app.route("/")
@@ -34,6 +42,7 @@ def upload():
         blob = bucket.blob(filename)
         blob.upload_from_file(file)
         output_image_url = blob.public_url
+
         return render_template('preview.html', download_img=filename, output_image=output_image_url)
     else:
         return redirect(url_for("home"))
