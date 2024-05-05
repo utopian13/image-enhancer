@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0" />
+        <link
+            rel="stylesheet"
+            href="{{ url_for('static', filename='css/styles.css') }}" />
+        <link
+            rel="icon"
+            type="image/x-icon"
+            href="./static/assets/ui/favicon.png" />
+
+        <title>AI - Image Enhancer</title>
+    </head>
+    <body>
+        <div class="container-home">
+            <div class="img-container-home">
+                <img
+                    src="#"
+                    class="upload-image"
+                    id="imagePreview" />
+                <img
+                    class="upload-icon"
+                    src="{{ url_for('static', filename='assets/ui/no-image-icon.png') }}"
+                    id="noImage" />
+                <p id="noImageText">No file chosen yet!</p>
+            </div>
+            <form
+                action="http://127.0.0.1:5000/download"
+                method="post"
+                enctype="multipart/form-data">
+                <input
+                    type="file"
+                    name="uploadedFile"
+                    id="uploadFile"
+                    title=""
+                    accept="image/png, image/jpg, image/jpeg" />
+                <h1>CHOOSE FILE</h1>
+                <button
+                    disabled
+                    class="upscale"
+                    id="upscaleButton"
+                    type="submit">
+                    UPSCALE IMAGE
+                </button>
+            </form>
+        </div>
+        <div class="footer">
+            <p>
+                AI - Image Enhancer Powered By |
+                <strong
+                    ><a
+                        class="LINK"
+                        target="_blank"
+                        href="https://github.com/xinntao/Real-ESRGAN"
+                        >RealESRGAN</a
+                    ></strong
+                >
+            </p>
+            <sub>Mirza Saad Zia</sub>
+        </div>
+        <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    </body>
+</html>

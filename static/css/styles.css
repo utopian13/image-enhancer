@@ -1,0 +1,230 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+body{
+    /* background: rgb(34, 156, 255); */
+    background-color: #23272f;
+}
+
+h1{
+    position: absolute;
+    top: 310px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    color: rgb(34, 156, 255);;
+    font-size: 85%;
+    font-weight: lighter;
+    pointer-events: none;
+}
+#noImageText{
+    position: absolute;
+    top: 170px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    color: rgb(150, 150, 150);
+}
+
+.container-home {
+    text-align: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    height: 350px;
+    width: 350px;
+    /* background-color: rgb(255, 255, 255); */
+    background-color: rgba(120, 131, 155, .2);
+    box-shadow: 0px 0px 30px rgb(0, 0, 0);
+    border-radius: 10px;
+}
+.img-container-home{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 92.5px;
+    right: 0;
+    margin: auto;
+    height: 230px;
+    width: 320px;
+    /* background-color: rgb(230, 230, 230); */
+    background-color: rgba(120, 131, 155, .1);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0);
+    border-radius: 10px;
+}
+.upload-icon{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 40%;
+    opacity: 0.8;
+}
+.upload-image{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.upscale {
+    position: absolute;
+    top: 200px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    cursor: pointer;
+    width: 320px;
+    height: 40px;
+    color: white;
+    background-color: rgb(34, 156, 255);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    transition: 0.7s ;
+}
+.upscale:hover{
+    background-color: rgb(76, 174, 255);
+    transition: 0.7s ;
+}
+.upscale:active{
+    background-color: rgb(0, 138, 250);
+    transition: 0.35s ;
+}
+.upscale:disabled{
+    pointer-events: none;
+    opacity: 0.6;
+}
+
+input{
+    position: absolute;
+    top: 290px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    width: 320px;
+    height: 35px;
+}
+input[type="file"]::file-selector-button{
+    width: 320px;
+    height: 35px;
+    color: transparent;
+    /* background-color: rgb(255, 255, 255); */
+    background-color: rgba(120, 131, 155, .2);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+}
+input[type="file"]::file-selector-button:hover{
+    /* background-color: rgb(230, 229, 229); */
+    background-color: rgba(120, 131, 155, .3);
+    cursor: pointer;
+}
+input[type="file"]::file-selector-button:active{
+    /* background-color: rgb(230, 229, 229); */
+    background-color: rgba(120, 131, 155, .25);
+}
+
+.container-preview {
+    text-align: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    height: 310px;
+    width: 350px;
+    /* background-color: rgb(255, 255, 255); */
+    background-color: rgba(120, 131, 155, .1);
+    box-shadow: 0px 0px 30px rgb(0, 0, 0);
+    border-radius: 10px;
+}
+.img-container-preview{
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 52px;
+    right: 0;
+    margin: auto;
+    height: 230px;
+    width: 320px;
+    /* background-color: rgb(230, 230, 230); */
+    box-shadow: 0px 0px 10px rgba(0, 0, 0);
+    border-radius: 10px;
+}
+.image-upscaled{
+    border:none;
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.download{
+    position: absolute;
+    top: 243px;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+    cursor: pointer;
+    text-decoration: none;
+    width: 320px;
+    height: 40px;
+    color: white;
+    background-color: rgb(34, 156, 255);
+    border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.16);
+    text-align: center;
+    line-height: 40px; 
+    transition: 0.7s;
+}
+.download:hover{
+    background-color: rgb(76, 174, 255);
+    transition: 0.7s ;
+}
+.download:active{
+    background-color: rgb(0, 138, 250);
+    transition: 0.35s ;
+}
+.download:disabled{
+    pointer-events: none;
+    opacity: 0.6;
+}
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 10px;
+    width: 100%;
+    background-color: transparent;
+    font-size: 80%;
+    color: white;
+    opacity: 70%;
+    text-align: center;
+}
+
+.LINK
+{
+    color:  rgb(34, 156, 255);
+    background-color: transparent;
+    text-decoration: none;
+}
+.LINK:hover{
+    color: rgb(76, 174, 255);
+    
+}
+.LINK:active{
+    color:  rgba(34, 156, 255, .7);
+}
