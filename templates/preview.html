@@ -11,7 +11,7 @@
         <link
             rel="icon"
             type="image/x-icon"
-            href="./static/assets/ui/favicon.png" />
+            href="{{ url_for('static', filename='assets/ui/favicon.png') }}" />
         <title>AI Image Enhancer</title>
     </head>
     <body>
@@ -19,10 +19,11 @@
             <div class="img-container-preview">
                 <img
                     class="image-upscaled"
-                    src="{{output_image}}" />
+                    src="{{ output_image }}"
+                    alt="Enhanced Image" />
             </div>
             <a
-                href="{{ url_for('download_image', filename=download_img) }}"
+                href="{{ url_for('download', filename=download_img) }}"
                 class="download"
                 >DOWNLOAD</a
             >
