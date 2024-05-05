@@ -1,14 +1,23 @@
-from flask import Flask, render_template, request, send_file, redirect, url_for
+import os
+from flask import Flask, render_template, request, redirect, url_for
 from werkzeug.utils import secure_filename
 import firebase_admin
 from firebase_admin import credentials, storage
+from dotenv import load_dotenv
 
+# Load environment variables from .env file
+load_dotenv()
+
+# Initialize Flask app
 app = Flask(__name__, template_folder='templates', static_folder='static')
-cred = credentials.Certificate("firebase-sdk.json")
+
+# Configure Firebase using environment variable
+cred = credentials.Certificate(os.getenv("FIREBASE_SDK"))
 firebase_admin.initialize_app(
     cred, {'storageBucket': 'practice-e99ea.appspot.com'})
-
 bucket = storage.bucket()
+
+# Define routes
 
 
 @app.route("/")
@@ -25,7 +34,6 @@ def upload():
         blob = bucket.blob(filename)
         blob.upload_from_file(file)
         output_image_url = blob.public_url
-
         return render_template('preview.html', download_img=filename, output_image=output_image_url)
     else:
         return redirect(url_for("home"))
